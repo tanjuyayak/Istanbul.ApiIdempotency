@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace Istanbul.ApiIdempotency
 {
-    public class IdempotencyOptions
+    public class ApiIdempotencyOptions
     {
-        public IIdempotencyDataStoreProvider IdempotencyDataStoreProvider { get; init; }
+        public IApiIdempotencyDataStoreProvider IdempotencyDataStoreProvider { get; init; }
+        public string IdempotencyHeaderKey { get; init; }
     }
 }

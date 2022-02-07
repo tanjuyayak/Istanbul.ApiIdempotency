@@ -2,9 +2,9 @@
 
 namespace Istanbul.ApiIdempotency
 {
-    public static class IdempotencyServiceCollectionExtensions
+    public static class ApiIdempotencyServiceCollectionExtensions
     {
-        public static IServiceCollection AddIdempotency(this IServiceCollection services, Action<IdempotencyOptions> idempotencyOptions)
+        public static IServiceCollection AddApiIdempotency(this IServiceCollection services, Action<ApiIdempotencyOptions> idempotencyOptions)
         {
             if (services == null)
             {

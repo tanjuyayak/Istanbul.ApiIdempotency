@@ -1,12 +1,12 @@
 ﻿namespace Istanbul.ApiIdempotency
 {
     [AttributeUsage(AttributeTargets.Method, Inherited = false, AllowMultiple = false)]
-    public class IdempotencyAttribute : Attribute
+    public class ApiIdempotencyAttribute : Attribute
     {
         private int _timeToLive;
         private bool _shouldHandleResponseHeaders;
 
-        public IdempotencyAttribute(int timeToLive, bool shouldHandleResponseHeaders = true)
+        public ApiIdempotencyAttribute(int timeToLive, bool shouldHandleResponseHeaders = true)
         {
             _timeToLive = timeToLive;
             _shouldHandleResponseHeaders = shouldHandleResponseHeaders;
