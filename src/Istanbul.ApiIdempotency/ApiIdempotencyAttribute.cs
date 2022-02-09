@@ -3,17 +3,17 @@
     [AttributeUsage(AttributeTargets.Method, Inherited = false, AllowMultiple = false)]
     public class ApiIdempotencyAttribute : Attribute
     {
-        private int _timeToLive;
+        private int _timeToLiveInMs;
         private bool _shouldHandleResponseHeaders;
 
-        public ApiIdempotencyAttribute(int timeToLive, bool shouldHandleResponseHeaders = true)
+        public ApiIdempotencyAttribute(int timeToLiveInMs, bool shouldHandleResponseHeaders = true)
         {
-            _timeToLive = timeToLive;
+            _timeToLiveInMs = timeToLiveInMs;
             _shouldHandleResponseHeaders = shouldHandleResponseHeaders;
         }
 
-        public int GetTimeToLive() { return _timeToLive; }
+        public int GetTimeToLiveInMs() { return _timeToLiveInMs; }
 
-        public bool ShouldHandleResponseHeaders { get { return _shouldHandleResponseHeaders; } }
+        public bool ShouldHandleResponseHeaders() { return _shouldHandleResponseHeaders; }
     }
 }

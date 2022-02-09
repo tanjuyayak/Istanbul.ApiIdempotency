@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="StackExchange.Redis" Version="2.2.88" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\src\Istanbul.ApiIdempotency.Core\Istanbul.ApiIdempotency.Core.csproj" />
+    <ProjectReference Include="..\src\Istanbul.ApiIdempotency.Redis.StackExchange\Istanbul.ApiIdempotency.Redis.StackExchange.csproj" />
+    <ProjectReference Include="..\src\Istanbul.ApiIdempotency\Istanbul.ApiIdempotency.csproj" />
+  </ItemGroup>
+
+</Project>

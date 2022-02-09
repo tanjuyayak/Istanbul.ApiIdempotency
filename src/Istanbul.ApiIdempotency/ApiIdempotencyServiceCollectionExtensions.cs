@@ -16,7 +16,18 @@ namespace Istanbul.ApiIdempotency
                 throw new ArgumentNullException(nameof(idempotencyOptions));
             }
 
-            services.Configure(idempotencyOptions);
+            var options = new ApiIdempotencyOptions();
+            idempotencyOptions(options);
+
+            var internalOptions = (ApiIdempotencyInternalOptions data) =>
+            {
+                data.IdempotencyHeaderKey = options.IdempotencyHeaderKey;
+            };
+
+            services.Configure(internalOptions);
+
+            services.AddSingleton(serviceProvider => { return options.IdempotencyDataStoreProvider; });
+
             return services;
         }
     }

@@ -1,17 +1,25 @@
 ﻿using Istanbul.ApiIdempotency.Core;
+using StackExchange.Redis;
 
 namespace Istanbul.ApiIdempotency.Redis.StackExchange
 {
     public class RedisApiIdempotencyDataStoreProvider : IApiIdempotencyDataStoreProvider
     {
-        public async Task SetDataAsync(string data)
+        private readonly ConnectionMultiplexer _connectionMultiplexe;
+
+        public RedisApiIdempotencyDataStoreProvider(ConnectionMultiplexer connectionMultiplexe)
         {
-            throw new NotImplementedException();
+            _connectionMultiplexe = connectionMultiplexe;
         }
 
-        public async Task<ApiIdempotencyResult> TryAcquireIdempotencyAsync(string key, int timeToLiveInMs)
+        public Task SetDataAsync(string jsonResponseData, Dictionary<string, string> responseHeaders)
         {
-            throw new NotImplementedException();
+            return Task.CompletedTask;
+        }
+
+        public Task<ApiIdempotencyResult> TryAcquireIdempotencyAsync(string key, int timeToLiveInMs)
+        {
+            return Task.FromResult(new ApiIdempotencyResult { IsIdempotencyAlreadyAcquired = false });
         }
     }
 }

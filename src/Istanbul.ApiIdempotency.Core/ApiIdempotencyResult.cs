@@ -3,6 +3,7 @@
     public class ApiIdempotencyResult
     {
         public bool IsIdempotencyAlreadyAcquired { get; init; }
-        public string Data { get; init; }
+        public string ResponseData { get; init; }
+        public Dictionary<string, string> ResponseHeaders { get; init; }
     }
 }
