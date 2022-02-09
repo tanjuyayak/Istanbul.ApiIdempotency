@@ -12,14 +12,20 @@ namespace Istanbul.ApiIdempotency.Redis.StackExchange
             _connectionMultiplexe = connectionMultiplexe;
         }
 
-        public Task SetDataAsync(string jsonResponseData, Dictionary<string, string> responseHeaders)
+        public Task SetDataAsync(string key, string jsonResponseData, int httpStatusCode, Dictionary<string, string> responseHeaders)
         {
             return Task.CompletedTask;
         }
 
         public Task<ApiIdempotencyResult> TryAcquireIdempotencyAsync(string key, int timeToLiveInMs)
         {
-            return Task.FromResult(new ApiIdempotencyResult { IsIdempotencyAlreadyAcquired = false });
+            return Task.FromResult(new ApiIdempotencyResult
+            {
+                IsIdempotencyAlreadyAcquired = false,
+                HttpStatusCode = 201,
+                JsonResponseData = "{ \"TestData\": 123 }",
+                ResponseHeaders = new Dictionary<string, string> { ["TestResponseHeaderKey"] = "data" }
+            });
         }
     }
 }
