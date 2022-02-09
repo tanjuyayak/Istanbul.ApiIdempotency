@@ -16,9 +16,9 @@
 	</ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\Istanbul.ApiIdempotency.Core\Istanbul.ApiIdempotency.Core.csproj" />
-    <ProjectReference Include="..\src\Istanbul.ApiIdempotency.Redis.StackExchange\Istanbul.ApiIdempotency.Redis.StackExchange.csproj" />
-    <ProjectReference Include="..\src\Istanbul.ApiIdempotency\Istanbul.ApiIdempotency.csproj" />
+    <ProjectReference Include="..\..\src\Istanbul.ApiIdempotency.Core\Istanbul.ApiIdempotency.Core.csproj" />
+    <ProjectReference Include="..\..\src\Istanbul.ApiIdempotency.Redis.StackExchange\Istanbul.ApiIdempotency.Redis.StackExchange.csproj" />
+    <ProjectReference Include="..\..\src\Istanbul.ApiIdempotency\Istanbul.ApiIdempotency.csproj" />
   </ItemGroup>
 
 </Project>

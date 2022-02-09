@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{D59C4F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{A54C2F6B-0590-4B97-BBF9-B4DD27A59059}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Istanbul.ApiIdempotency.Sample", "Istanbul.ApiIdempotency.Sample\Istanbul.ApiIdempotency.Sample.csproj", "{5E82F5E7-AB34-4F26-8D37-47821558D211}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Istanbul.ApiIdempotency.Sample", "sample\Istanbul.ApiIdempotency.Sample\Istanbul.ApiIdempotency.Sample.csproj", "{5E82F5E7-AB34-4F26-8D37-47821558D211}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
