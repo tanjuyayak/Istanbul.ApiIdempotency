@@ -36,6 +36,11 @@ namespace Istanbul.ApiIdempotency
                 throw new ArgumentException($"Request header doesn't contain '{idempotencyHeaderKey}' key for idempotency!");
             }
 
+            if (string.IsNullOrWhiteSpace(idempotencyKeyValue))
+            {
+                throw new ArgumentException($"Idempotency header key '{idempotencyHeaderKey}' is null or string empty or contains only white space");
+            }
+
             var result = await apiIdempotencyDataStoreProvider.TryAcquireIdempotencyAsync(idempotencyKeyValue, timeToLiveInMs);
             if (result.IsIdempotencyAlreadyAcquired)
             {
@@ -49,7 +54,7 @@ namespace Istanbul.ApiIdempotency
                     }
                 }
 
-                await context.Response.WriteAsync(result.JsonResponseData);
+                await context.Response.WriteAsync(result.ResponseBody);
 
                 return;
             }
@@ -66,10 +71,10 @@ namespace Istanbul.ApiIdempotency
 
                     responseMemoryStream.Position = 0;
 
-                    var jsonResponseBody = new StreamReader(responseMemoryStream).ReadToEnd();
+                    var responseBody = new StreamReader(responseMemoryStream).ReadToEnd();
                     var responseHeaders = GetResponseHeaders(context);
 
-                    await apiIdempotencyDataStoreProvider.SetDataAsync(idempotencyKeyValue, jsonResponseBody, context.Response.StatusCode, responseHeaders);
+                    await apiIdempotencyDataStoreProvider.SetDataAsync(idempotencyKeyValue, responseBody, context.Response.StatusCode, responseHeaders);
 
                     responseMemoryStream.Position = 0;
 
@@ -82,9 +87,9 @@ namespace Istanbul.ApiIdempotency
             }
         }
 
-        private Dictionary<string, string> GetResponseHeaders(HttpContext context)
+        private static Dictionary<string, string> GetResponseHeaders(HttpContext context)
         {
-            return new Dictionary<string, string>();
+            return context.Response.Headers.ToDictionary(a => a.Key, a => (string)a.Value);
         }
     }
 }

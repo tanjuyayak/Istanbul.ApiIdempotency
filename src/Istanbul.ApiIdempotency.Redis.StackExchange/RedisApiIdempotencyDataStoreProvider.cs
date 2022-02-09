@@ -12,7 +12,7 @@ namespace Istanbul.ApiIdempotency.Redis.StackExchange
             _connectionMultiplexe = connectionMultiplexe;
         }
 
-        public Task SetDataAsync(string key, string jsonResponseData, int httpStatusCode, Dictionary<string, string> responseHeaders)
+        public Task SetDataAsync(string key, string responseBody, int httpStatusCode, Dictionary<string, string> responseHeaders)
         {
             return Task.CompletedTask;
         }
@@ -23,7 +23,7 @@ namespace Istanbul.ApiIdempotency.Redis.StackExchange
             {
                 IsIdempotencyAlreadyAcquired = false,
                 HttpStatusCode = 201,
-                JsonResponseData = "{ \"TestData\": 123 }",
+                ResponseBody = "{ \"TestData\": 123 }",
                 ResponseHeaders = new Dictionary<string, string> { ["TestResponseHeaderKey"] = "data" }
             });
         }
