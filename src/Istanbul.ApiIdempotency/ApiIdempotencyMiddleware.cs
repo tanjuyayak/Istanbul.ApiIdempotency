@@ -23,8 +23,8 @@ namespace Istanbul.ApiIdempotency
                 return;
             }
 
-            var timeToLiveInMs = apiIdempotencyAttribute.GetTimeToLiveInMs();
-            if (timeToLiveInMs <= 0)
+            var timeToLiveInSec = apiIdempotencyAttribute.GetTimeToLiveInSec();
+            if (timeToLiveInSec <= 0)
             {
                 throw new ArgumentException($"TTL for idempotency can't be zero or lower than zero!");
             }
@@ -41,20 +41,20 @@ namespace Istanbul.ApiIdempotency
                 throw new ArgumentException($"Idempotency header key '{idempotencyHeaderKey}' is null or string empty or contains only white space");
             }
 
-            var result = await apiIdempotencyDataStoreProvider.TryAcquireIdempotencyAsync(idempotencyKeyValue, timeToLiveInMs);
+            var result = await apiIdempotencyDataStoreProvider.TryAcquireIdempotencyAsync(idempotencyKeyValue, timeToLiveInSec);
             if (result.IsIdempotencyAlreadyAcquired)
             {
-                context.Response.StatusCode = result.HttpStatusCode;
+                context.Response.StatusCode = result.ResponseCache.HttpStatusCode;
 
-                if (result.ResponseHeaders != null && result.ResponseHeaders.Count > 0)
+                if (result.ResponseCache.ResponseHeaders != null && result.ResponseCache.ResponseHeaders.Count > 0)
                 {
-                    foreach (var responseHeader in result.ResponseHeaders)
+                    foreach (var responseHeader in result.ResponseCache.ResponseHeaders)
                     {
                         context.Response.Headers[responseHeader.Key] = responseHeader.Value;
                     }
                 }
 
-                await context.Response.WriteAsync(result.ResponseBody);
+                await context.Response.WriteAsync(result.ResponseCache.ResponseBody);
 
                 return;
             }

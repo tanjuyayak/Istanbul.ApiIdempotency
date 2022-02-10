@@ -3,13 +3,13 @@
     [AttributeUsage(AttributeTargets.Method, Inherited = false, AllowMultiple = false)]
     public class ApiIdempotencyAttribute : Attribute
     {
-        private int _timeToLiveInMs;
+        private int _timeToLiveInSec;
 
-        public ApiIdempotencyAttribute(int timeToLiveInMs)
+        public ApiIdempotencyAttribute(int timeToLiveInSec)
         {
-            _timeToLiveInMs = timeToLiveInMs;
+            _timeToLiveInSec = timeToLiveInSec;
         }
 
-        public int GetTimeToLiveInMs() { return _timeToLiveInMs; }
+        public int GetTimeToLiveInSec() { return _timeToLiveInSec; }
     }
 }
