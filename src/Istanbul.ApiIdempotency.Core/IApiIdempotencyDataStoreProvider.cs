@@ -3,6 +3,6 @@
     public interface IApiIdempotencyDataStoreProvider
     {
         Task<ApiIdempotencyResult> TryAcquireIdempotencyAsync(string key, int timeToLiveInSec);
-        Task SetDataAsync(string key, string responseBody, int httpStatusCode, Dictionary<string, string> responseHeaders);
+        Task SetDataAsync(string key, int timeToLiveInSec, string responseBody, int httpStatusCode, Dictionary<string, string> responseHeaders);
     }
 }

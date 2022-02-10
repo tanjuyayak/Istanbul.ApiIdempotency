@@ -74,7 +74,7 @@ namespace Istanbul.ApiIdempotency
                     var responseBody = new StreamReader(responseMemoryStream).ReadToEnd();
                     var responseHeaders = GetResponseHeaders(context);
 
-                    await apiIdempotencyDataStoreProvider.SetDataAsync(idempotencyKeyValue, responseBody, context.Response.StatusCode, responseHeaders);
+                    await apiIdempotencyDataStoreProvider.SetDataAsync(idempotencyKeyValue, timeToLiveInSec, responseBody, context.Response.StatusCode, responseHeaders);
 
                     responseMemoryStream.Position = 0;
 
