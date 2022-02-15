@@ -30,15 +30,15 @@ Or via the .NET Core command line interface:
 
 ## Roadmap
 
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
+- [x] Creating basic idempotency package
+- [x] Nuget availability
+- [ ] Auto generated idempotency keys
+- [ ] Allowing project to provide key (not only from request header)
+- [ ] Supporting more data stores
+    - [ ] Couchbase
+    - [ ] Memcached
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/tanjuyayak/Istanbul.ApiIdempotency/issues) for a full list of proposed features (and known issues).
 
 
 ## Contributing
