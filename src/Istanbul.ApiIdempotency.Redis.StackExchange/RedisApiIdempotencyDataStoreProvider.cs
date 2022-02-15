@@ -7,9 +7,9 @@ namespace Istanbul.ApiIdempotency.Redis.StackExchange
 {
     public class RedisApiIdempotencyDataStoreProvider : IApiIdempotencyDataStoreProvider
     {
-        private readonly ConnectionMultiplexer _connectionMultiplexer;
+        private readonly IConnectionMultiplexer _connectionMultiplexer;
 
-        public RedisApiIdempotencyDataStoreProvider(ConnectionMultiplexer connectionMultiplexer)
+        public RedisApiIdempotencyDataStoreProvider(IConnectionMultiplexer connectionMultiplexer)
         {
             _connectionMultiplexer = connectionMultiplexer;
         }

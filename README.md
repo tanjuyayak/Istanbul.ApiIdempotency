@@ -25,8 +25,34 @@ Or via the .NET Core command line interface:
 
 ## Usage
 
+Package is designed to work with different data stores and it supports Redis at the moment. There are different Redis c# driver to connect and use Redis so I decided to provide different packages idempotency data store packages for different Redis drivers. First version of Redis data store for this package supports **StackExchange** driver so that's why **RedisApiIdempotencyDataStoreProvider** accepts **IConnectionMultiplexer** as constructor parameter. You are free to configure **IConnectionMultiplexer** as you wish.
 
 
+Configure settings:
+``` csharp
+var redisConnectionMultiplexer = ConnectionMultiplexer.Connect("localhost");
+
+services.AddApiIdempotency(options =>
+{
+    options.IdempotencyHeaderKey = "X-Idempotency-Key";
+    options.IdempotencyDataStoreProvider = new RedisApiIdempotencyDataStoreProvider(redisConnectionMultiplexer);
+});
+```
+Use idempotency:
+``` csharp
+app.UseApiIdempotency();
+```
+
+Activate idempotency with 20 seconds of timeout:
+``` csharp
+[HttpPost]
+[Route("api/[controller]/create")]
+[ApiIdempotency(20)]
+public IActionResult Create()
+{
+    return Ok(new { OrderCreationDate = DateTime.Now });
+}
+```
 
 ## Roadmap
 
