@@ -25,7 +25,9 @@ Or via the .NET Core command line interface:
 
 ## Usage
 
-Package is designed to work with different data stores and it supports Redis at the moment. There are different Redis c# driver to connect and use Redis so I decided to provide different packages idempotency data store packages for different Redis drivers. First version of Redis data store for this package supports **StackExchange** driver so that's why **RedisApiIdempotencyDataStoreProvider** accepts **IConnectionMultiplexer** as constructor parameter. You are free to configure **IConnectionMultiplexer** as you wish.
+Package is designed to work with different data stores and it supports Redis at the moment. There are different Redis c# drivers available in order to connect and use Redis so I decided to provide different idempotency data store packages for different Redis drivers. 
+
+First version of **RedisApiIdempotencyDataStoreProvider** supports **StackExchange** driver so that's why it accepts **IConnectionMultiplexer** as constructor parameter. You are free to configure **IConnectionMultiplexer** as you wish.
 
 
 Configure settings:
@@ -82,4 +84,4 @@ Don't forget to give the project a star :smile:
 
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the MIT License. See `LICENSE` for more information.
