@@ -44,6 +44,13 @@ namespace Istanbul.ApiIdempotency
             var result = await apiIdempotencyDataStoreProvider.TryAcquireIdempotencyAsync(idempotencyKeyValue, timeToLiveInSec);
             if (result.IsIdempotencyAlreadyAcquired)
             {
+                if (result.ResponseCache == null)
+                {
+                    context.Response.StatusCode = 425;
+
+                    return;
+                }
+
                 context.Response.StatusCode = result.ResponseCache.HttpStatusCode;
 
                 if (result.ResponseCache.ResponseHeaders != null && result.ResponseCache.ResponseHeaders.Count > 0)
