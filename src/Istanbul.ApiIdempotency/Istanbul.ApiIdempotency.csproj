@@ -6,6 +6,24 @@
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
+	<PropertyGroup>
+		<Version>1.0.0</Version>
+		<Title>Istanbul.ApiIdempotency</Title>
+		<Authors>Tanju Yayak</Authors>
+		<Description>Istanbul.ApiIdempotency is a .net package which focuses on helping developers to implement idempotency concept easily to their applications.</Description>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/tanjuyayak/Istanbul.ApiIdempotency</PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/tanjuyayak/Istanbul.ApiIdempotency.git</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>.net;idempotency;api;idempotent</PackageTags>
+		<PackageReleaseNotes>https://github.com/tanjuyayak/Istanbul.ApiIdempotency/releases</PackageReleaseNotes>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="../../README.md" Pack="true" Visible="false" PackagePath="" />
+	</ItemGroup>
+
 	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
@@ -13,6 +31,6 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Istanbul.ApiIdempotency.Core\Istanbul.ApiIdempotency.Core.csproj" />
 	</ItemGroup>
-	
+
 
 </Project>
