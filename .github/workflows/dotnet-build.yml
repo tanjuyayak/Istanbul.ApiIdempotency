@@ -1,4 +1,4 @@
-name: .NET
+name: BuildApp
 
 on:
   push:
