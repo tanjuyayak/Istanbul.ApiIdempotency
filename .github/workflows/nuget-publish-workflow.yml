@@ -2,11 +2,10 @@ name: NugetPublishWorkflow
 
 on:
   workflow_dispatch:
-
+  
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET
@@ -23,7 +22,7 @@ jobs:
       run: dotnet pack --configuration Release --no-build --output ./packages
     - name: Publish Istanbul.ApiIdempotency
       run: dotnet nuget push ./packages/Istanbul.ApiIdempotency.1.0.0.nupkg --api-key ${{ secrets.NUGETKEY }}
-     - name: Publish Istanbul.ApiIdempotency.Core
+    - name: Publish Istanbul.ApiIdempotency.Core
       run: dotnet nuget push ./packages/Istanbul.ApiIdempotency.Core.1.0.0.nupkg --api-key ${{ secrets.NUGETKEY }}
-     - name: Publish Istanbul.ApiIdempotency.Redis.StackExchange
+    - name: Publish Istanbul.ApiIdempotency.Redis.StackExchange
       run: dotnet nuget push ./packages/Istanbul.ApiIdempotency.Redis.StackExchange.1.0.0.nupkg --api-key ${{ secrets.NUGETKEY }}
