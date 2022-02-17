@@ -21,8 +21,8 @@ jobs:
     - name: Pack
       run: dotnet pack --configuration Release --no-build --output ./packages
     - name: Publish Istanbul.ApiIdempotency
-      run: dotnet nuget push ./packages/Istanbul.ApiIdempotency.1.0.0.nupkg --api-key ${{ secrets.NUGETKEY }}
+      run: dotnet nuget push ./packages/Istanbul.ApiIdempotency.1.0.0.nupkg --api-key ${{ secrets.NUGETKEY }} --source https://api.nuget.org/v3/index.json
     - name: Publish Istanbul.ApiIdempotency.Core
-      run: dotnet nuget push ./packages/Istanbul.ApiIdempotency.Core.1.0.0.nupkg --api-key ${{ secrets.NUGETKEY }}
+      run: dotnet nuget push ./packages/Istanbul.ApiIdempotency.Core.1.0.0.nupkg --api-key ${{ secrets.NUGETKEY }} --source https://api.nuget.org/v3/index.json
     - name: Publish Istanbul.ApiIdempotency.Redis.StackExchange
-      run: dotnet nuget push ./packages/Istanbul.ApiIdempotency.Redis.StackExchange.1.0.0.nupkg --api-key ${{ secrets.NUGETKEY }}
+      run: dotnet nuget push ./packages/Istanbul.ApiIdempotency.Redis.StackExchange.1.0.0.nupkg --api-key ${{ secrets.NUGETKEY }} --source https://api.nuget.org/v3/index.json
