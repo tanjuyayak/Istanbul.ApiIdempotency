@@ -4,8 +4,6 @@ using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
 
 var redisConnectionMultiplexer = ConnectionMultiplexer.Connect("localhost");
@@ -18,11 +16,7 @@ builder.Services.AddApiIdempotency(options =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-
 app.UseApiIdempotency();
-
-app.UseAuthorization();
 
 app.MapControllers();
 

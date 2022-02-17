@@ -12,12 +12,12 @@ Istanbul.ApiIdempotency is a .net package which focuses on helping developers to
 
 ## Installation
 
-You can install [Istanbul.ApiIdempotency with NuGet](https://www.nuget.org/packages/Istanbul.Idempotency):
+You can install [Istanbul.ApiIdempotency with NuGet](https://www.nuget.org/packages/Istanbul.ApiIdempotency):
 
     Install-Package Istanbul.ApiIdempotency
     Install-Package Istanbul.ApiIdempotency.Redis.StackExchange
     
-Or via the .NET Core command line interface:
+Or via the .NET command line interface:
 
     dotnet add package Istanbul.ApiIdempotency
     dotnet add package Istanbul.ApiIdempotency.Redis.StackExchange
