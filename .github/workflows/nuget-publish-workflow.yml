@@ -1,4 +1,4 @@
-name: Nuget Publish Workflow
+name: NugetPublishWorkflow
 
 on:
   workflow_dispatch:
