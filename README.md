@@ -1,5 +1,7 @@
 ##  About Istanbul.ApiIdempotency 
 
+<img alt="GitHub Workflow Status (branch)" src="https://img.shields.io/github/workflow/status/tanjuyayak/Istanbul.ApiIdempotency/BuildApp/main?style=plastic">
+
 ###  What is Idempotency? 
 Idempotency is a term given to certain operations in mathematics and computer science. In mathematics, it can be seen when we multiply any number  by 1. It doesn’t matter how many times we perform this operation the result will be always same.
 
