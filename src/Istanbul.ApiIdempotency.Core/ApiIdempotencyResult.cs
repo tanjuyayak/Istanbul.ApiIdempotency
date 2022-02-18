@@ -2,7 +2,7 @@
 {
     public class ApiIdempotencyResult
     {
-        public bool IsIdempotencyAlreadyAcquired { get; init; }
+        public bool KeyExists { get; init; }
         public ApiResponseCache ResponseCache { get; init; }
     }
 }

@@ -41,8 +41,8 @@ namespace Istanbul.ApiIdempotency
                 throw new ArgumentException($"Idempotency header key '{idempotencyHeaderKey}' is null or string empty or contains only white space");
             }
 
-            var result = await apiIdempotencyDataStoreProvider.TryAcquireIdempotencyAsync(idempotencyKeyValue, timeToLiveInSec);
-            if (result.IsIdempotencyAlreadyAcquired)
+            var result = await apiIdempotencyDataStoreProvider.TryCheckKeyExistsAsync(idempotencyKeyValue, timeToLiveInSec);
+            if (result.KeyExists)
             {
                 if (result.ResponseCache == null)
                 {

@@ -32,7 +32,7 @@ namespace Istanbul.ApiIdempotency.Redis.StackExchange
             await db.StringSetAsync(key, jsonResponseCache, TimeSpan.FromSeconds(timeToLiveInSec));
         }
 
-        public async Task<ApiIdempotencyResult> TryAcquireIdempotencyAsync(string key, int timeToLiveInSec)
+        public async Task<ApiIdempotencyResult> TryCheckKeyExistsAsync(string key, int timeToLiveInSec)
         {
             const string luaScript = "if redis.call('SETNX', KEYS[1], 'null') == 0 then return '{ \"KeyExists\": true, \"Data\": '..redis.call('GET', KEYS[1])..'}' else redis.call('EXPIRE', KEYS[1], ARGV[1]) return '{ \"KeyExists\": false }' end";
             var db = _connectionMultiplexer.GetDatabase(0);
@@ -61,7 +61,7 @@ namespace Istanbul.ApiIdempotency.Redis.StackExchange
 
             return new ApiIdempotencyResult
             {
-                IsIdempotencyAlreadyAcquired = objectRedisResult.KeyExists,
+                KeyExists = objectRedisResult.KeyExists,
                 ResponseCache = responseCache
             };
         }
