@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.Options;
 using Moq;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Xunit;
@@ -251,6 +252,60 @@ namespace Istanbul.ApiIdempotency.Test
             var responseBody = reader.ReadToEnd();
 
             Assert.Equal("testhttpresponsebody", responseBody);
+        }
+
+        [Fact]
+        public async Task Invoke_Should_Call_SetDataAsync_With_Relevant_Data_To_Set_Data_In_DataStore()
+        {
+            var headerKey = "test-header-key";
+            var headerKeyValue = "abc123";
+            var responseBody = "testresponsebody";
+            var ttl = 10;
+            var httpResponseCode = 200;
+            var responseHeaderKey = "header1";
+            var responseHeaderValue = "header1value";
+
+            var requestDelegate = new RequestDelegate(async (innerContext) => {
+
+                await innerContext.Response.WriteAsync(responseBody);
+
+            });
+
+            var apiIdempotencyDataStoreProviderMock = new Mock<IApiIdempotencyDataStoreProvider>();
+            apiIdempotencyDataStoreProviderMock.Setup(s => s.TryCheckKeyExistsAsync(It.IsAny<string>(), It.IsAny<int>())).ReturnsAsync(new ApiIdempotencyResult
+            {
+                KeyExists = false
+            });
+
+            var apiIdempotencyInternalOptionsMock = new Mock<IOptions<ApiIdempotencyInternalOptions>>();
+            apiIdempotencyInternalOptionsMock.Setup(s => s.Value).Returns(new ApiIdempotencyInternalOptions
+            {
+                IdempotencyHeaderKey = headerKey
+            });
+
+            var apiIdempotencyMiddleware = new ApiIdempotencyMiddleware(requestDelegate);
+
+            var context = new DefaultHttpContext();
+            context.Request.Headers.Add(headerKey, headerKeyValue);
+
+           
+
+            context.Response.StatusCode = httpResponseCode;
+            context.Response.Headers.Clear();
+            context.Response.Headers.Add(responseHeaderKey, responseHeaderValue);
+
+            var endpointMetadataCollection = new EndpointMetadataCollection(new object[] { new ApiIdempotencyAttribute(ttl) });
+
+            var initialEndpoint = new Endpoint(c => Task.CompletedTask, endpointMetadataCollection, "Test endpoint");
+            var initialFeature = new EndpointFeature
+            {
+                Endpoint = initialEndpoint
+            };
+            context.Features.Set<IEndpointFeature>(initialFeature);
+
+            await apiIdempotencyMiddleware.InvokeAsync(context, apiIdempotencyDataStoreProviderMock.Object, apiIdempotencyInternalOptionsMock.Object);
+
+            apiIdempotencyDataStoreProviderMock.Verify(v => v.SetDataAsync(It.Is<string>(i => i == headerKeyValue), It.Is<int>(i => i == ttl), It.Is<string>(i => i == responseBody), It.Is<int>(i => i == 200), It.Is<Dictionary<string, string>>(i => i[responseHeaderKey] == responseHeaderValue)), Times.Once);
         }
 
         private class EndpointFeature : IEndpointFeature

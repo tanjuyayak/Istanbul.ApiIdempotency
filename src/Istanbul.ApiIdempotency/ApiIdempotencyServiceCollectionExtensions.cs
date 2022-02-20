@@ -19,6 +19,16 @@ namespace Istanbul.ApiIdempotency
             var options = new ApiIdempotencyOptions();
             idempotencyOptions(options);
 
+            if (string.IsNullOrWhiteSpace(options.IdempotencyHeaderKey))
+            {
+                throw new ArgumentException($"{nameof(options.IdempotencyHeaderKey)} is NULL or empty or contains only white space(s)");
+            }
+
+            if (options.IdempotencyDataStoreProvider == null)
+            {
+                throw new ArgumentNullException(nameof(options.IdempotencyDataStoreProvider));
+            }
+
             var internalOptions = (ApiIdempotencyInternalOptions data) =>
             {
                 data.IdempotencyHeaderKey = options.IdempotencyHeaderKey;

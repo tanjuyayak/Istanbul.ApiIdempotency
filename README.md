@@ -25,6 +25,8 @@ Or via the .NET command line interface:
     dotnet add package Istanbul.ApiIdempotency.Redis.StackExchange
 
 
+Sample application [**Istanbul.ApiIdempotency.Sample**](https://github.com/tanjuyayak/Istanbul.ApiIdempotency/tree/main/sample/Istanbul.ApiIdempotency.Sample) is available under repository.
+
 ## Usage
 
 Package is designed to work with different data stores and it supports Redis at the moment. There are different Redis c# drivers available in order to connect and use Redis so I decided to provide different idempotency data store packages for different Redis drivers. 

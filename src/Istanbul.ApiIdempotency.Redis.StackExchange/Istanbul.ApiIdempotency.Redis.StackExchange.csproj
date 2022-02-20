@@ -7,7 +7,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<Version>1.0.2</Version>
+		<Version>1.0.3</Version>
 		<Title>Istanbul.ApiIdempotency.Redis.StackExchange</Title>
 		<Authors>Tanju Yayak</Authors>
 		<Description>Istanbul.ApiIdempotency.Redis.StackExchange is Redis data store provider (based on StackExchange) of Istanbul.ApiIdempotency .net package which focuses on helping developers to implement idempotency concept easily to their applications.</Description>

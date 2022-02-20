@@ -7,7 +7,7 @@ namespace Istanbul.ApiIdempotency.Sample.Controllers
     {
         [HttpPost]
         [Route("api/[controller]/create")]
-        [ApiIdempotency(20)]
+        [ApiIdempotency(10)]
         public IActionResult Create()
         {
             return Ok(new { OrderCreationDate = DateTime.Now });
