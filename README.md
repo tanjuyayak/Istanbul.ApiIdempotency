@@ -7,6 +7,8 @@ Idempotency is a term given to certain operations in mathematics and computer sc
 
 It is also very important concept in computer science. Idempotency concept is allowing you to retry a request multiple times while only performing the action once. Let's imagine that you have an api which is responsible for accepting payments for a specific order. From client application perspective there are many situations (timeouts, network issues, application failures, bugs and even clicking "complete" button more than one time) which might require safely retrying the same operation with the guarantee that the operation will only be executed once.  
 
+## How It Works?
+<img src="https://github.com/tanjuyayak/Istanbul.ApiIdempotency/blob/main/img/apiidempotencydiagram.png" width="100%">
 
 ## Getting Started
 
