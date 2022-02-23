@@ -17,5 +17,13 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --configuration Release /p:Version=${VERSION} --no-restore
+    - name: Test
+      run: dotnet test /p:Version=${VERSION} --verbosity normal
     - name: Pack
       run: dotnet pack --configuration Release /p:Version=${VERSION} --output ./packages
+    - name: Publish packages
+      run: dotnet nuget push "./packages/Istanbul.ApiIdempotency.*.nupkg" --api-key ${{ secrets.NUGETKEY }} --source https://api.nuget.org/v3/index.json
