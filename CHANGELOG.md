@@ -1,6 +1,6 @@
 # Changelog
 
-## [v1.0.4](https://github.com/tanjuyayak/Istanbul.ApiIdempotency) (2022-02-23)
+## [v1.0.5](https://github.com/tanjuyayak/Istanbul.ApiIdempotency) (2022-02-23)
 
 **Implemented enhancements:**
 
