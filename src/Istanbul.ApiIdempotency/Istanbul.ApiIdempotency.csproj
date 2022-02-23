@@ -7,7 +7,6 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<Version>1.0.3</Version>
 		<Title>Istanbul.ApiIdempotency</Title>
 		<Authors>Tanju Yayak</Authors>
 		<Description>Istanbul.ApiIdempotency is a .net package which focuses on helping developers to implement idempotency concept easily to their applications.</Description>
