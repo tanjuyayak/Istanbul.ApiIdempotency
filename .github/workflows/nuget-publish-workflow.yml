@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Set VERSION variable from tag
-      run: echo "VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
+      run: echo "VERSION=${GITHUB_REF/refs\/tags\/}" >> $GITHUB_ENV
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
